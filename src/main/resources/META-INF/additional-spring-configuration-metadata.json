@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "SCHEDULE",
+      "type": "java.lang.String",
+      "description": "Description for SCHEDULE."
+    },
+    {
+      "name": "PATH",
+      "type": "java.lang.String",
+      "description": "PATH to csv file"
+    }
+  ]
+}

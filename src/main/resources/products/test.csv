@@ -1,0 +1,3 @@
+product_id, product_name, price_id, price, price_datetime
+6,test6,6,10620,2002-10-09 10:13
+7,test7,7,1600,2002-10-09 10:13
