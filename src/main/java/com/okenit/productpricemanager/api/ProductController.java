@@ -27,7 +27,8 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping()
+
+    @GetMapping(produces = "application/json")
     ResponseEntity<List<ProductNameAndPriceDto>> getActualPrice(@RequestParam @ApiParam(value = "template of date 'yyyy-MM-dd'", example = "2002-10-09") String date) {
         try {
             Date fromDate = dateFormatUtil.parseFromDate(date);
@@ -39,7 +40,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/statisic/date")
+    @GetMapping(value = "/statisic/date",produces = "application/json")
     ResponseEntity<List<StatisticByDayDto>> getStatisticByDay(@RequestParam @ApiParam(value = "template of date 'yyyy-MM-dd'", example = "2002-10-09") String date) throws ParseException {
         try {
             Date formDate = dateFormatUtil.parseFromDate(date);
@@ -57,7 +58,7 @@ public class ProductController {
         return ResponseEntity.ok(count);
     }
 
-    @GetMapping("/statistic/product")
+    @GetMapping(value = "/statistic/product",produces = "application/json")
     ResponseEntity<List<StatisticByProductDto>> getStatisticByProduct(@RequestParam @ApiParam(value = "id of required product", example = "1", name = "id") Long id) {
         List<StatisticByProductDto> statistic = productService.frequencyStatisticByProductId(id);
         return ResponseEntity.ok(statistic);
