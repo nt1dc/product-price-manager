@@ -6,9 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigInteger;
-@Data
 @RequiredArgsConstructor
-@NoArgsConstructor
+@Data
 public class StatisticByDayDto {
     @ApiModelProperty(value = "Name of product", example = "productName")
     String name;

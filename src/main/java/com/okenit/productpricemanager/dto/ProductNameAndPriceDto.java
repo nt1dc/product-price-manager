@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-@Data
 @RequiredArgsConstructor
-@NoArgsConstructor
+@Data
 public class ProductNameAndPriceDto {
     @ApiModelProperty(value = "Product name", example = "productName")
     String name;

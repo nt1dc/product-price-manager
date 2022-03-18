@@ -9,9 +9,8 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 
-@Data
 @AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class StatisticByProductDto implements Serializable {
     Date date;
     @ApiModelProperty(example = "3")
