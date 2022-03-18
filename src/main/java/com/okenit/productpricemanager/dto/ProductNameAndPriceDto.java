@@ -10,7 +10,7 @@ public class ProductNameAndPriceDto {
     @ApiModelProperty(value = "Product price", example = "1800.05")
     Double price;
 
-    public ProductNameAndPriceDto(){};
+    public ProductNameAndPriceDto(){}
     public ProductNameAndPriceDto(String name, Double price) {
         this.name = name;
         this.price = price;

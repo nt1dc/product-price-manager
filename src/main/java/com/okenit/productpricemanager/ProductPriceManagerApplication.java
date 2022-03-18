@@ -1,6 +1,7 @@
 package com.okenit.productpricemanager;
 
 import com.okenit.productpricemanager.parsers.CsvParser;
+import com.okenit.productpricemanager.utils.SwaggerFileCreator;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 @SpringBootApplication
-@EnableSwagger2WebMvc
 public class ProductPriceManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProductPriceManagerApplication.class, args);
@@ -16,9 +16,10 @@ public class ProductPriceManagerApplication {
     }
 
     @Bean
-    CommandLineRunner runner(CsvParser parser) {
+    CommandLineRunner runner(CsvParser parser, SwaggerFileCreator swaggerFileCreator) {
         return args -> {
             parser.parse();
+            swaggerFileCreator.readJsonFromUrl();
         };
     }
 }

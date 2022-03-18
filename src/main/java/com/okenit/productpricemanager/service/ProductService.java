@@ -26,28 +26,6 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void saveProductsAndPrices(List<Product> products, List<ProductPrice> productPrices) {
-
-        log.info("Starting load products to DB");
-        try {
-            productRepository.saveAll(products);
-
-        }catch (Exception|Error e){
-            log.error("Error in products prices ");
-            log.error(e.getLocalizedMessage());
-        }
-
-        log.info("Starting load prices to DB");
-        try {
-
-
-            priceRepository.saveAll(productPrices);
-        }catch (Exception|Error e){
-            log.error("Error in loading prices ");
-            log.error(e.getLocalizedMessage());
-        }
-        log.info("Loading end");
-    }
 
     public List<ProductNameAndPriceDto> getActual(Date date) {
         return priceRepository.actualPriceList(date);
@@ -64,10 +42,37 @@ public class ProductService {
     public List<StatisticByDayDto> frequencyStatisticByDate(Date date) {
         return priceRepository.frequencyStatisticByDate(date);
     }
-    public void saveAllProducts(List<Product> products){
-        productRepository.saveAll(products);
+
+
+    public void saveProduct(Product product) {
+        productRepository.save(product);
     }
-    public void saveAllProductPrices(List<ProductPrice> prices){
-        priceRepository.saveAll(prices);
+
+    public void saveProductPrice(ProductPrice price) {
+        priceRepository.save(price);
+    }
+
+
+    public void saveProductsAndPrices(List<Product> products, List<ProductPrice> productPrices) {
+
+        log.info("Starting load products to DB");
+        try {
+            productRepository.saveAll(products);
+
+        } catch (Exception | Error e) {
+            log.error("Error in products prices ");
+            log.error(e.getLocalizedMessage());
+        }
+
+        log.info("Starting load prices to DB");
+        try {
+
+
+            priceRepository.saveAll(productPrices);
+        } catch (Exception | Error e) {
+            log.error("Error in loading prices ");
+            log.error(e.getLocalizedMessage());
+        }
+        log.info("Loading end");
     }
 }

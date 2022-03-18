@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityExistsException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,18 +56,30 @@ public class CsvParser implements ProductParser {
     }
 
     private void loadToBD() {
-        if (!products.isEmpty()) {
-            service.saveAllProducts(products);
-            products.clear();
-        } else {
-            log.info("empty products");
+
+        for (Product p : products
+        ) {
+            try {
+                service.saveProduct(p);
+            } catch (EntityExistsException e) {
+                log.error(p.toString() + " with this ID already exist ");
+            }
         }
-        if (!productPrices.isEmpty()) {
-            service.saveAllProductPrices(productPrices);
-            productPrices.clear();
-        }else {
-            log.info("empty prices");
+//            service.saveAllProducts(products);
+        products.clear();
+
+        for (ProductPrice pp : productPrices
+        ) {
+            try {
+                service.saveProductPrice(pp);
+            } catch (EntityExistsException e) {
+                log.error(pp.toString() + " with this ID already exist ");
+            }
         }
+
+//        service.saveAllProductPrices(productPrices);
+        productPrices.clear();
+
     }
 
 
@@ -75,23 +88,18 @@ public class CsvParser implements ProductParser {
     }
 
     @Override
-    @Scheduled(cron = ("${SCHEDULE}"))
-//    @Scheduled(fixedRate = 1000)
+    @Scheduled(cron = "${SCHEDULE}")
     public void parse() {
         try {
             log.info("CSV PATH = " + path);
             reader = new FileReader(path);
             readCsv();
             new File(path).delete();
+            loadToBD();
         } catch (FileNotFoundException e) {
             log.error("CSV file " + path + " not found");
         } catch (IOException e) {
-            log.info("ERROR during reading CSV");
-        }
-        try {
-            loadToBD();
-        } catch (Exception e) {
-            log.error(e.getLocalizedMessage());
+            log.error("ERROR during reading CSV " + e.getLocalizedMessage());
         }
     }
 }
