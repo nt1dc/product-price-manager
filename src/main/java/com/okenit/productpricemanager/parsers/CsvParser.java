@@ -82,7 +82,7 @@ public class CsvParser implements ProductParser {
             log.info("CSV PATH = " + path);
             reader = new FileReader(path);
             readCsv();
-//            new File(path).delete();
+            new File(path).delete();
         } catch (FileNotFoundException e) {
             log.error("CSV file " + path + " not found");
         } catch (IOException e) {
