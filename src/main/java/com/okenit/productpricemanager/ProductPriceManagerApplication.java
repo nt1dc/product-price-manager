@@ -6,7 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 @SpringBootApplication
 public class ProductPriceManagerApplication {
@@ -19,7 +18,7 @@ public class ProductPriceManagerApplication {
     CommandLineRunner runner(CsvParser parser, SwaggerFileCreator swaggerFileCreator) {
         return args -> {
             parser.parse();
-            swaggerFileCreator.readJsonFromUrl();
+            swaggerFileCreator.create();
         };
     }
 }
