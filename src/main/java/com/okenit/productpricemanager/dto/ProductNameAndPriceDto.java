@@ -2,7 +2,6 @@ package com.okenit.productpricemanager.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,6 +1,5 @@
 package com.okenit.productpricemanager.utils;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -9,10 +8,14 @@ import java.util.Date;
 
 @Component
 public class DateFormatUtil {
-    private final SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-    private final SimpleDateFormat dateTime = new SimpleDateFormat("");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat dateTime = new SimpleDateFormat("");
 
-    public  Date parseFromDate(String string) throws ParseException {
-        return date.parse(string);
+    public static Date parseFromDate(String string) throws ParseException {
+        return dateFormat.parse(string);
+    }
+
+    public static String getNormanDate(Date date){
+        return dateFormat.format(date);
     }
 }

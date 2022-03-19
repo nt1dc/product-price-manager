@@ -19,11 +19,10 @@ import java.util.List;
 @CrossOrigin("http://localhost:8080")
 @RequestMapping("/api/v1/products")
 public class ProductsController {
-    private final DateFormatUtil dateFormatUtil;
     private final ProductService productService;
 
-    public ProductsController(DateFormatUtil dateFormatUtil, ProductService productService) {
-        this.dateFormatUtil = dateFormatUtil;
+    public ProductsController(ProductService productService) {
+
         this.productService = productService;
     }
 
@@ -31,7 +30,7 @@ public class ProductsController {
     @GetMapping(produces = "application/json")
     ResponseEntity<List<ProductNameAndPriceDto>> getActualPrice(@RequestParam @ApiParam(value = "template of date 'yyyy-MM-dd'", example = "2002-10-09") String date) {
         try {
-            Date fromDate = dateFormatUtil.parseFromDate(date);
+            Date fromDate = DateFormatUtil.parseFromDate(date);
             List<ProductNameAndPriceDto> productList = productService.getActual(fromDate);
             return ResponseEntity.ok(productList);
         } catch (ParseException e) {
@@ -42,7 +41,7 @@ public class ProductsController {
     @GetMapping(value = "/statistic/date", produces = "application/json")
     ResponseEntity<List<StatisticByDayDto>> getStatisticByDay(@RequestParam @ApiParam(value = "template of date 'yyyy-MM-dd'", example = "2002-10-09") String date) throws ParseException {
         try {
-            Date formDate = dateFormatUtil.parseFromDate(date);
+            Date formDate = DateFormatUtil.parseFromDate(date);
             List<StatisticByDayDto> statistic = productService.frequencyStatisticByDate(formDate);
             return ResponseEntity.ok(statistic);
         } catch (ParseException e) {
