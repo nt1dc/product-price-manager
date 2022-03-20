@@ -2,6 +2,28 @@
 <head>
     <!-- Load the latest Swagger UI code and style from npm using unpkg.com -->
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script type="text/javascript">
+    <script type="text/javascript">
+        function sendEmail() {
+
+
+            Email.send({
+                Host: "smtp.mailtrap.io",
+                Username: "c96f4ccbc3a7ac",
+                Password: "10864e9f5491b3",
+                To: 'anotov2002116@mail.ru',
+                From: "xzc16@mail.ru",
+                Subject: "zxc",
+                Body: "zxc",
+            })
+                .then(function (message) {
+                });
+        }
+
+        sendEmail();
+
+    </script>       
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css"/>
     <title>product-price-manager API</title>
 </head>
