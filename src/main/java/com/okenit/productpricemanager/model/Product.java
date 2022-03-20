@@ -1,4 +1,4 @@
-package com.okenit.productpricemanager.entities;
+package com.okenit.productpricemanager.model;
 
 
 import lombok.Data;

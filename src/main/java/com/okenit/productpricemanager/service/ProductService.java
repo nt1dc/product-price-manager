@@ -3,15 +3,13 @@ package com.okenit.productpricemanager.service;
 import com.okenit.productpricemanager.dto.ProductNameAndPriceDto;
 import com.okenit.productpricemanager.dto.StatisticByDayDto;
 import com.okenit.productpricemanager.dto.StatisticByProductDto;
-import com.okenit.productpricemanager.entities.Product;
-import com.okenit.productpricemanager.entities.ProductPrice;
+import com.okenit.productpricemanager.model.Product;
+import com.okenit.productpricemanager.model.ProductPrice;
 import com.okenit.productpricemanager.repository.ProductPriceRepository;
 import com.okenit.productpricemanager.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityExistsException;
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
